@@ -1,4 +1,13 @@
 import {useState, useEffect, useReducer } from 'react'
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import { css } from '@emotion/core'
+
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const ApiFetch = (props) => {
   // add loading component
@@ -10,7 +19,7 @@ const ApiFetch = (props) => {
     // make our loading component show for at least 1.5 seconds
     const timeout = setTimeout(()=> {
       setTime(1)
-    }, 1500)
+    }, 2500)
     // cleanup function
     return ()=> { clearTimeout(timeout) }
   }, [])
@@ -37,9 +46,9 @@ const ApiFetch = (props) => {
           <img src={userObject.avatar_url} alt={userObject.name} />
           </>
          :
-        <>
-        <p>loading</p>
-        </>
+        <div>
+          <ClimbingBoxLoader css={override}/>
+        </div>
         }
       </div>
   )
